@@ -2,10 +2,13 @@ require './player'
 require './question'
 
 class Game
+
   def initialize
     @player1 = Player.new('Player 1')
     @player2 = Player.new('Player 2')
-    @players = [@player1, @player2]
+
+    # In every game, the first player will be random
+    @players = [@player1, @player2].shuffle
   end
 
   # keep turning over until one of the player's life is equal to 0
