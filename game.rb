@@ -8,8 +8,25 @@ class Game
     @players = [@player1, @player2]
   end
 
+  # keep turning over until one of the player's life is equal to 0
   def turn_over
-    puts "\n----- NEW TURN -----"
+    if @players.find {|p| p.lives == 0 }
+      puts "\n----- WINNER -----"
+      game_over
+    else
+      puts "\n---- NEW TURN -----"
+    end
+  end
+
+  # the player whose life isn't equal to 0 is the winner
+  def get_winner
+    @players.find {|p| p.lives != 0}
+  end
+
+  def game_over
+    puts "\n#{get_winner.name} wins with a score of #{get_winner.lives}/3"
+    puts "\n----- GAME OVER -----"
+    puts "Good Bye!"
   end
 
   # play game
