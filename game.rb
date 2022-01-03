@@ -14,26 +14,31 @@ class Game
 
   # play game
   def play
+    puts "\n--- Welcome to TwO-O-Player Math Game ---"
     puts "\n----- GAME START -----"
 
-    question = Question.new
+    # play until one of the player's life is equal to 0
+    until @players.find {|p| p.lives == 0 } do
 
-    puts "#{@players.first.name}: what does #{question.first_num} plus #{question.second_num} equal?"
-    print "> "
-    player_answer = gets.chomp.to_i
+      question = Question.new
 
-    # if a player answers wrong, lose 1 life
-    puts (
-      if player_answer == question.answer
-        "#{@players.first.name}: YES! You are correct."
-      else
-        @players.first.wrong_answer 
-        "#{@players.first.name}: Seriously? No!" 
-      end
-    )
-    puts "P1: #{@player1.lives}/3 vs P2: #{@player2.lives}/3"
+      puts "#{@players.first.name}: what does #{question.first_num} plus #{question.second_num} equal?"
+      print "> "
+      player_answer = gets.chomp.to_i
 
-    @players.reverse!
-    turn_over
+      # if a player answers wrong, lose 1 life
+      puts (
+        if player_answer == question.answer
+          "#{@players.first.name}: YES! You are correct."
+        else
+          @players.first.wrong_answer
+          "#{@players.first.name}: Seriously? No!"
+        end
+      )
+      puts "P1: #{@player1.lives}/3 vs P2: #{@player2.lives}/3"
+
+      @players.reverse!
+      turn_over
+    end
   end
 end
