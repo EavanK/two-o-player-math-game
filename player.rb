@@ -6,6 +6,7 @@ class Player
     @lives = 3
   end
 
+  # if a player answers wrong, lose a life
   def wrong_answer
     @lives -= 1
   end
